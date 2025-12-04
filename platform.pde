@@ -20,11 +20,14 @@ void setup() {
 
   size(600, 600);
   Fisica.init(this);
-  world = new FWorld(-2000, -2000, 2000, 2000);
-  world.setGravity(0, 900);
+
   map = loadImage("map.png");
-
-
+  loadWorold(map);
+}
+ void loadWorld(PImage img) {
+world = new FWorld(-2000, -2000, 2000, 2000);
+ world.setGravity(0, 900);
+ 
   for (int y = 0; y < map.height; y++) {
     for (int x = 0; x < map.width; x++) {
       color c = map.get(x, y);
@@ -43,6 +46,7 @@ void setup() {
 }
 
 void draw() {
+  background(white);
   world.step();
   world.draw();
 }
