@@ -14,7 +14,10 @@ PImage map;
 int gridSize = 32;
 
 //KEYS
+float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
+FPlayer player; 
+
 
 void setup() {
 
@@ -22,7 +25,8 @@ void setup() {
   Fisica.init(this);
 
   map = loadImage("map.png");
-  loadWorold(map);
+  loadWorld(map);
+  loadPlayer();
 }
  void loadWorld(PImage img) {
 world = new FWorld(-2000, -2000, 2000, 2000);
@@ -45,8 +49,22 @@ world = new FWorld(-2000, -2000, 2000, 2000);
   }
 }
 
+void loadPlayer() {
+  player = new FPlayer();
+  world.add(player);
+}
+
 void draw() {
   background(white);
+  drawWorld();
+  player.act();
+}
+
+void drawWorld() {
+  pushMatrix();
+  translate( -player.getX()*zoom+width/2, -player.getY()*zoom+height/2); 
+  scale(zoom); 
   world.step();
   world.draw();
+  popMatrix();
 }
