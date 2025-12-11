@@ -2,13 +2,19 @@ import fisica.*;
 FWorld world;
 
 
-color white = #FFFFFF;
-color black = #000000;
-color green = #4FD859;
-color red   = #DB3128;
-color blue  = #DB3128;
-color orange= #F7AE1B;
-color brown = #8E630D;
+color white          = #FFFFFF;
+color black          = #000000;
+color cyan           = #00FFFF;
+color middleGreen    = #00FF00;
+color leftGreen      = #009F00;
+color rightGreen     = #006F00;
+color centerGreen    = #004F00;
+color treeTrunkBrown = #FF9500;
+color green          = #4FD859;
+color red            = #DB3128;
+color blue           = #DB3128;
+color orange         = #F7AE1B;
+color brown          = #8E630D;
 
 PImage map;
 int gridSize = 32;
@@ -16,7 +22,7 @@ int gridSize = 32;
 //KEYS
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
-FPlayer player; 
+FPlayer player;
 
 
 void setup() {
@@ -28,10 +34,10 @@ void setup() {
   loadWorld(map);
   loadPlayer();
 }
- void loadWorld(PImage img) {
-world = new FWorld(-2000, -2000, 2000, 2000);
- world.setGravity(0, 900);
- 
+void loadWorld(PImage img) {
+  world = new FWorld(-20000, -20000, 20000, 20000);
+  world.setGravity(0, 900);
+
   for (int y = 0; y < map.height; y++) {
     for (int x = 0; x < map.width; x++) {
       color c = map.get(x, y);
@@ -62,8 +68,8 @@ void draw() {
 
 void drawWorld() {
   pushMatrix();
-  translate( -player.getX()*zoom+width/2, -player.getY()*zoom+height/2); 
-  scale(zoom); 
+  translate( -player.getX()*zoom+width/2, -player.getY()*zoom+height/2);
+  scale(zoom);
   world.step();
   world.draw();
   popMatrix();
