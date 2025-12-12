@@ -5,21 +5,21 @@ FWorld world;
 color white          = #FFFFFF;
 color black          = #000000;
 color cyan           = #00FFFF;
-color middleGreen    = #00FF00;
-color leftGreen      = #009F00;
-color rightGreen     = #006F00;
+color ice            = #99d9ea;
+color middleGreen    = #22b14c;
+color topGreen       = #a8e61d;
+color sideGreen      = #d3f9bc;
 color centerGreen    = #004F00;
-color treeTrunkBrown = #FF9500;
+color treeTrunkBrown = #9c5a3c;
+color spike          = #b4b4b4;
 color green          = #4FD859;
 color red            = #DB3128;
 color blue           = #DB3128;
 color orange         = #F7AE1B;
 color brown          = #8E630D;
 
-PImage map;
+PImage map, ice, stone, treeTrunk;
 int gridSize = 32;
-
-//KEYS
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
 FPlayer player;
