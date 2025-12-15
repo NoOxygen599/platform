@@ -5,7 +5,7 @@ FWorld world;
 color white          = #FFFFFF;
 color black          = #000000;
 color cyan           = #00FFFF;
-color ice            = #99d9ea;
+color colorIce       = #99d9ea;
 color middleGreen    = #22b14c;
 color topGreen       = #a8e61d;
 color sideGreen      = #d3f9bc;
@@ -29,30 +29,51 @@ void setup() {
 
   size(600, 600);
   Fisica.init(this);
-
-  map = loadImage("map.png");
+  loadImages();
+  //map = loadImage("map.png");
   loadWorld(map);
   loadPlayer();
+}
+
+void loadImages() {
+  map = loadImage("map.png");
+  ice = loadImage("ice.png");
+  treeTrunk = loadImage("tree_trunk.png"); 
+  stone = loadImage("brick.png");
+  
+  
+  
 }
 void loadWorld(PImage img) {
   world = new FWorld(-20000, -20000, 20000, 20000);
   world.setGravity(0, 900);
 
-  for (int y = 0; y < map.height; y++) {
-    for (int x = 0; x < map.width; x++) {
+  for (int y = 0; y < img.height; y++) {
+    for (int x = 0; x < img.width; x++) {
       color c = map.get(x, y);
-      if (c == black) {
-        print("#");
         FBox b = new FBox (gridSize, gridSize);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
+        if (c == black) {
+        b.attachImage(stone); 
+        b.setFriction(17);
+        b.setName("stone");
         world.add(b);
-      } else {
-        print(" ");
-      }
+       }
+        if (c == colorIce) {
+        b.attachImage(ice); 
+        b.setFriction(1);
+        b.setName("ice");
+        world.add(b);
+        }
+         if (c == treeTrunkBrown) {
+        b.attachImage(treeTrunk); 
+        b.setFriction(4);
+        b.setName("treeTrunk");
+        world.add(b);
     }
-    println("");
   }
+}
 }
 
 void loadPlayer() {
