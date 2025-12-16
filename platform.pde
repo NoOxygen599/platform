@@ -7,9 +7,10 @@ color black          = #000000;
 color cyan           = #00FFFF;
 color colorIce       = #99d9ea;
 color middleGreen    = #22b14c;
-color topGreen       = #a8e61d;
-color sideGreen      = #d3f9bc;
+color rightGreen     = #a8e61d;
+color leftGreen      = #d3f9bc;
 color centerGreen    = #004F00;
+color intGreen       = #24e61e; 
 color treeTrunkBrown = #9c5a3c;
 color spike          = #b4b4b4;
 color green          = #4FD859;
@@ -18,7 +19,7 @@ color blue           = #DB3128;
 color orange         = #F7AE1B;
 color brown          = #8E630D;
 
-PImage map, ice, stone, treeTrunk;
+PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight;
 int gridSize = 32;
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
@@ -40,7 +41,10 @@ void loadImages() {
   ice = loadImage("ice.png");
   treeTrunk = loadImage("tree_trunk.png"); 
   stone = loadImage("brick.png");
-  
+  treeMiddle = loadImage("treetop_center.png");
+  treeLeft = loadImage ("treetop_w.png");
+  treeRight = loadImage ("treetop_e.png");
+  treeIntersect = loadImage ("tree_intersect.png"); 
   
   
 }
@@ -56,19 +60,43 @@ void loadWorld(PImage img) {
         b.setStatic(true);
         if (c == black) {
         b.attachImage(stone); 
-        b.setFriction(17);
+        b.setFriction(5);
         b.setName("stone");
         world.add(b);
        }
         if (c == colorIce) {
         b.attachImage(ice); 
-        b.setFriction(1);
+        b.setFriction(0);
         b.setName("ice");
         world.add(b);
         }
-         if (c == treeTrunkBrown) {
-        b.attachImage(treeTrunk); 
+         if (c == middleGreen) {
+        b.attachImage(treeMiddle); 
         b.setFriction(4);
+        b.setName("treeMiddleL");
+        world.add(b);
+    }
+      if (c == leftGreen) {
+        b.attachImage(treeLeft); 
+        b.setFriction(4);
+        b.setName("treeLeftL");
+        world.add(b);
+    }
+      if (c == rightGreen) {
+        b.attachImage(treeRight); 
+        b.setFriction(4);
+        b.setName("treeRightL");
+        world.add(b);
+    }
+    if (c == intGreen ) {
+        b.attachImage(treeIntersect); 
+        b.setFriction(4);
+        b.setName("treeIntL");
+        world.add(b);
+    }
+      if (c == treeTrunkBrown) {
+        b.attachImage(treeTrunk); 
+        b.setSensor(true);
         b.setName("treeTrunk");
         world.add(b);
     }
