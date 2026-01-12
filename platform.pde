@@ -12,14 +12,14 @@ color leftGreen      = #d3f9bc;
 color centerGreen    = #004F00;
 color intGreen       = #24e61e; 
 color treeTrunkBrown = #9c5a3c;
-color spike          = #b4b4b4;
+color spikeGrey      = #b4b4b4;
 color green          = #4FD859;
 color red            = #DB3128;
 color blue           = #DB3128;
 color orange         = #F7AE1B;
 color brown          = #8E630D;
 
-PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight;
+PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight, spike;
 int gridSize = 32;
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
@@ -37,21 +37,21 @@ void setup() {
 }
 
 void loadImages() {
-  map = loadImage("map.png");
-  ice = loadImage("ice.png");
-  treeTrunk = loadImage("tree_trunk.png"); 
-  stone = loadImage("brick.png");
-  treeMiddle = loadImage("treetop_center.png");
-  treeLeft = loadImage ("treetop_w.png");
-  treeRight = loadImage ("treetop_e.png");
+  map =           loadImage("map.png");
+  ice =           loadImage("ice.png");
+  treeTrunk =     loadImage("tree_trunk.png"); 
+  stone =         loadImage("brick.png");
+  treeMiddle =    loadImage("treetop_center.png");
+  treeLeft =      loadImage ("treetop_w.png");
+  treeRight =     loadImage ("treetop_e.png");
   treeIntersect = loadImage ("tree_intersect.png"); 
-  
+  spike =         loadImage ("spike.png");
   
 }
 void loadWorld(PImage img) {
   world = new FWorld(-20000, -20000, 20000, 20000);
   world.setGravity(0, 900);
-
+  
   for (int y = 0; y < img.height; y++) {
     for (int x = 0; x < img.width; x++) {
       color c = map.get(x, y);
@@ -60,7 +60,7 @@ void loadWorld(PImage img) {
         b.setStatic(true);
         if (c == black) {
         b.attachImage(stone); 
-        b.setFriction(5);
+        b.setFriction(7);
         b.setName("stone");
         world.add(b);
        }
@@ -100,6 +100,11 @@ void loadWorld(PImage img) {
         b.setName("treeTrunk");
         world.add(b);
     }
+    if (c == spikeGrey) {
+        b.attachImage(spike);   
+        b.setName("spike");
+        world.add(b);
+    }
   }
 }
 }
@@ -114,6 +119,18 @@ void draw() {
   drawWorld();
   player.act();
 }
+
+void actworld() {
+  player.act();
+ // for (int i = 0; i < terrain.size(); i++) {
+   // FBox b = terrain.get(i);
+  //  if (b instanceof FBride) ((Fbridge) b) .act();
+ // }
+  
+  
+  
+}
+
 
 void drawWorld() {
   pushMatrix();
