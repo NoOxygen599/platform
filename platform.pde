@@ -13,13 +13,14 @@ color centerGreen    = #004F00;
 color intGreen       = #24e61e; 
 color treeTrunkBrown = #9c5a3c;
 color spikeGrey      = #b4b4b4;
+color bridge         = #f5e49c;
 color green          = #4FD859;
 color red            = #DB3128;
 color blue           = #DB3128;
 color orange         = #F7AE1B;
 color brown          = #8E630D;
 
-PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight, spike;
+PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight, spike, Bridge;
 int gridSize = 32;
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
@@ -27,7 +28,7 @@ FPlayer player;
 
 
 void setup() {
-
+ 
   size(600, 600);
   Fisica.init(this);
   loadImages();
@@ -46,7 +47,7 @@ void loadImages() {
   treeRight =     loadImage ("treetop_e.png");
   treeIntersect = loadImage ("tree_intersect.png"); 
   spike =         loadImage ("spike.png");
-  
+  Bridge =        loadImage ("bridge_center.png"); 
 }
 void loadWorld(PImage img) {
   world = new FWorld(-20000, -20000, 20000, 20000);
@@ -105,6 +106,11 @@ void loadWorld(PImage img) {
         b.setName("spike");
         world.add(b);
     }
+    if (c == bridge) {
+        b.attachImage(Bridge);   
+        b.setName("bridge");
+        world.add(b);
+    }
   }
 }
 }
@@ -122,11 +128,11 @@ void draw() {
 
 void actworld() {
   player.act();
- // for (int i = 0; i < terrain.size(); i++) {
-   // FBox b = terrain.get(i);
-  //  if (b instanceof FBride) ((Fbridge) b) .act();
- // }
-  
+//for (int i = 0; i < terrain.size(); i++) {
+ //  FBox b = terrain.get(i);
+  // if (b instanceof FBride) ((Fbridge) b) .act();
+ //}
+ 
   
   
 }
