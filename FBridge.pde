@@ -8,7 +8,9 @@
     setStatic(true); 
   }
    void act() {
+      println("bridge"); 
      if(isTouching("player")) {
+      
        setStatic(false); 
      }
    }

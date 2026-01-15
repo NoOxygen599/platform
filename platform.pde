@@ -20,19 +20,29 @@ color blue           = #DB3128;
 color orange         = #F7AE1B;
 color brown          = #8E630D;
 
+//images ------------------------------------------------------------
 PImage map, ice, stone, treeTrunk, treeIntersect, treeMiddle, treeLeft, treeRight, spike, Bridge;
+
+
+//images character ----------------------------------------------------
+PImage[] idle;
+PImage[] jump;
+PImage[] run;
+PImage[] action; 
+
+//map assets----------------------------------------------------------------
 int gridSize = 32;
 float zoom = 1.5;
 boolean upkey, downkey, leftkey, rightkey, spacekey, qkey, wkey, akey, skey, dkey, ekey;
 FPlayer player;
-
+ArrayList<FGameObject > terrain;
 
 void setup() {
  
   size(600, 600);
   Fisica.init(this);
   loadImages();
-  //map = loadImage("map.png");
+  terrain = new ArrayList <FGameObject>();
   loadWorld(map);
   loadPlayer();
 }
@@ -106,10 +116,13 @@ void loadWorld(PImage img) {
         b.setName("spike");
         world.add(b);
     }
-    if (c == bridge) {
-        b.attachImage(Bridge);   
+    else if (c == bridge) {
+        FBridge br = new FBridge (x*gridSize, y*gridSize);
+        b.attachImage(Bridge);
+        b.setFriction(4);
         b.setName("bridge");
-        world.add(b);
+        terrain.add(br); 
+        world.add(br);
     }
   }
 }
@@ -121,17 +134,17 @@ void loadPlayer() {
 }
 
 void draw() {
-  background(white);
+  background(# 38AADE);
   drawWorld();
-  player.act();
+  actworld();
 }
 
 void actworld() {
   player.act();
-//for (int i = 0; i < terrain.size(); i++) {
- //  FBox b = terrain.get(i);
-  // if (b instanceof FBride) ((Fbridge) b) .act();
- //}
+   for (int i = 0; i < terrain.size(); i++) {
+   FGameObject t = terrain.get(i);
+   t.act();
+ }
  
   
   

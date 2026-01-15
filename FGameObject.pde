@@ -12,7 +12,7 @@ class FGameObject extends FBox {
     ArrayList<FContact> contacts = getContacts();
     for (int i = 0; i < contacts.size(); i++) {
       FContact fc = contacts.get(i);
-      if (fc.contains("spike")) {
+      if (fc.contains(n)) {
         setVelocity(0, 0); 
         return true;
       }
