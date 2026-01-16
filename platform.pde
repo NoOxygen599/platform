@@ -45,7 +45,12 @@ void setup() {
   terrain = new ArrayList <FGameObject>();
   loadWorld(map);
   loadPlayer();
+  
+ 
+ 
 }
+
+
 
 void loadImages() {
   map =           loadImage("map.png");
@@ -58,6 +63,21 @@ void loadImages() {
   treeIntersect = loadImage ("tree_intersect.png"); 
   spike =         loadImage ("spike.png");
   Bridge =        loadImage ("bridge_center.png"); 
+  
+  //load actions ------------------------------------
+  idle = new PImage[2];
+  idle[0] = loadImage("idle0.png");
+  idle[1] = loadImage("idle1.png");
+  
+  jump = new PImage[1];
+  jump[0] = loadImage("jump0.png");
+  
+  run = new PImage[3];
+  run[0] = loadImage("runright0.png");
+  run[1] = loadImage("runright1.png");
+  run[2] = loadImage("runright2.png");
+  
+  action = idle;
 }
 void loadWorld(PImage img) {
   world = new FWorld(-20000, -20000, 20000, 20000);
@@ -134,7 +154,7 @@ void loadPlayer() {
 }
 
 void draw() {
-  background(# 38AADE);
+  background(#4CD5FA);
   drawWorld();
   actworld();
 }
