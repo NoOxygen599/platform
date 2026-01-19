@@ -10,7 +10,7 @@
    void act() {
       println("bridge"); 
      if(isTouching("player")) {
-      
+       setSensor(true); 
        setStatic(false); 
      }
    }
