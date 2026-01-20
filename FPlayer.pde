@@ -2,8 +2,7 @@ class FPlayer extends FGameObject {
   
   int frame;
   int direction; 
-  final int L = -1;
-  final int R = 1; 
+ 
   
   
   FPlayer() {
@@ -61,6 +60,9 @@ void collisions() {
 if (isTouching("spike")){
       setPosition(700, 0);  
   }
+  //if (isTouching("ice")){
+   //   setVelocity(handleInput(vx * 0.2)); 
+ // }
 }
   
   

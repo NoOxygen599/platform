@@ -14,7 +14,7 @@ color intGreen       = #24e61e;
 color treeTrunkBrown = #9c5a3c;
 color spikeGrey      = #b4b4b4;
 color bridge         = #f5e49c;
-color green          = #4FD859;
+color yellow         = #fff200; 
 color red            = #DB3128;
 color blue           = #DB3128;
 color orange         = #F7AE1B;
@@ -144,6 +144,11 @@ void loadWorld(PImage img) {
         terrain.add(br); 
         world.add(br);
     }
+    else if(c == yellow) {
+      FGoomba gmb = new FGoomba (x*gridSize, y*gridSize);
+      enemies.add(gmb);
+      world.add(gmb);
+    }
   }
 }
 }
@@ -154,7 +159,7 @@ void loadPlayer() {
 }
 
 void draw() {
-  background(#4CD5FA);
+  background(#85C3F5);
   drawWorld();
   actworld();
 }
